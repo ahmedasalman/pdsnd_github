@@ -1,15 +1,15 @@
 ### Date created
-Include the date you created this project and README file.
+5/19/2020
 
 ### Project Title
-Replace the Project Title
-
+bikeshare
 ### Description
-Describe what your project is about and what it does
-
+This project gets useful information and statistics from bike-sharing company tables
 ### Files used
-Include the files used
+washington.csv, new_york_city.csv, chicago.csv
+
+### Updates
+-added the bikeshare.py file, the project now can test for time statistics and show raw data
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+[link](https://github.com/udacity/pdsnd_github)
