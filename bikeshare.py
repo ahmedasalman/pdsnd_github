@@ -82,7 +82,6 @@ def time_stats(df):
     #Displays statistics on the most frequent times of travel.
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
-    start_time = time.time()
 
     # TO DO: display the most common month
     allmonths=['january','february','march','april','may','june']
@@ -101,7 +100,7 @@ def time_stats(df):
     print('Most Popular Start Hour:', popular_hour)
 
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\n")
     print('-'*40)
 
 
@@ -109,7 +108,6 @@ def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
-    start_time = time.time()
 
     # TO DO: display most commonly used start station
     popular_start_station = df['Start Station'].mode()[0]
@@ -125,7 +123,7 @@ def station_stats(df):
     popular_combination = df['Combination Of Stations'].mode()[0]
     print('Most common combination: ', popular_combination)
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\n")
     print('-'*40)
 
 
@@ -133,7 +131,6 @@ def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
     print('\nCalculating Trip Duration...\n')
-    start_time = time.time()
 
     # TO DO: display total travel time
     print('total travel time: {} seconds'.format( df['Trip Duration'].sum()))
@@ -141,7 +138,7 @@ def trip_duration_stats(df):
     # TO DO: display mean travel time
     print('mean travel time: {} seconds'.format( df['Trip Duration'].mean()))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\n")
     print('-'*40)
 
 
@@ -149,7 +146,6 @@ def user_stats(df,city):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
-    start_time = time.time()
 
     # TO DO: Display counts of user types
     user_types = df['User Type'].value_counts()
@@ -166,7 +162,7 @@ def user_stats(df,city):
     else:
         print("Washington doesn't have gender or birth year data")
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\n")
     print('-'*40)
 
 
@@ -176,7 +172,7 @@ def print_raw_data(df):
     df.pop('day_of_week')
     df.pop('month')
     df.pop('hour')
-    df.pop('Combination Of Stations')    
+    df.pop('Combination Of Stations')
     while True:
         raw_data=input('would you like to see some raw data?').lower()
         if raw_data=='yes':
