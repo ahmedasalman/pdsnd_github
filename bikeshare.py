@@ -82,7 +82,6 @@ def time_stats(df):
     #Displays statistics on the most frequent times of travel.
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
-    start_time = time.time()
 
     # TO DO: display the most common month
     allmonths=['january','february','march','april','may','june']
@@ -101,9 +100,70 @@ def time_stats(df):
     print('Most Popular Start Hour:', popular_hour)
 
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\n")
     print('-'*40)
 
+
+def station_stats(df):
+    """Displays statistics on the most popular stations and trip."""
+
+    print('\nCalculating The Most Popular Stations and Trip...\n')
+
+    # TO DO: display most commonly used start station
+    popular_start_station = df['Start Station'].mode()[0]
+    print('Most common start station: ', popular_start_station)
+
+
+    # TO DO: display most commonly used end station
+    popular_end_station = df['End Station'].mode()[0]
+    print('Most common end station: ', popular_end_station)
+
+    # TO DO: display most frequent combination of start station and end station trip
+    df['Combination Of Stations']= df['Start Station'] + " - " + df['End Station']
+    popular_combination = df['Combination Of Stations'].mode()[0]
+    print('Most common combination: ', popular_combination)
+
+    print("\n")
+    print('-'*40)
+
+
+def trip_duration_stats(df):
+    """Displays statistics on the total and average trip duration."""
+
+    print('\nCalculating Trip Duration...\n')
+
+    # TO DO: display total travel time
+    print('total travel time: {} seconds'.format( df['Trip Duration'].sum()))
+
+    # TO DO: display mean travel time
+    print('mean travel time: {} seconds'.format( df['Trip Duration'].mean()))
+
+    print("\n")
+    print('-'*40)
+
+
+def user_stats(df,city):
+    """Displays statistics on bikeshare users."""
+
+    print('\nCalculating User Stats...\n')
+
+    # TO DO: Display counts of user types
+    user_types = df['User Type'].value_counts()
+    print("user types count:\n",user_types,'\n')
+
+    # TO DO: Display counts of gender
+    if city!='washington':
+        gender = df['Gender'].value_counts()
+        print("genders count: \n",gender,'\n')
+    # TO DO: Display earliest, most recent, and most common year of birth
+        print('earliest year of birth:', df['Birth Year'].min())
+        print('most recent year of birth:', df['Birth Year'].max())
+        print('most common year of birth:', df['Birth Year'].mode()[0])
+    else:
+        print("Washington doesn't have gender or birth year data")
+
+    print("\n")
+    print('-'*40)
 
 
 def print_raw_data(df):
@@ -112,6 +172,7 @@ def print_raw_data(df):
     df.pop('day_of_week')
     df.pop('month')
     df.pop('hour')
+    df.pop('Combination Of Stations')
     while True:
         raw_data=input('would you like to see some raw data?').lower()
         if raw_data=='yes':
@@ -128,6 +189,9 @@ def main():
         df = load_data(city, month, day)
 
         time_stats(df)
+        station_stats(df)
+        trip_duration_stats(df)
+        user_stats(df,city)
         print_raw_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
